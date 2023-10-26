@@ -1,0 +1,140 @@
+.m-menu {
+  position: fixed;
+  z-index: 10;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  &__header {
+    height: 80px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+
+      & img {
+        display: none;
+        @media screen and (min-width: 768px) {
+          display: block;
+        }
+      }
+    }
+    &__close {
+      display: flex;
+      align-items: center;
+      color: #888;
+      cursor: pointer;
+      & svg {
+        fill: #888;
+      }
+      & span {
+        text-transform: uppercase;
+        margin-left: 12.5px;
+        font-family: "Larsseit Medium";
+        font-size: 14px;
+        letter-spacing: 0.78px;
+        line-height: 17px;
+      }
+      &:hover {
+        & svg {
+          fill: #e98a8f;
+        }
+        & span {
+          color: #e98a8f;
+        }
+      }
+    }
+  }
+  &__wrapper {
+    padding: 0 20px;
+    @media only screen and (min-width: 768px) {
+      padding: 0;
+      position: relative;
+      width: 250%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    @media only screen and (min-width: 768px) and (min-width: 1201px) {
+      width: 1000px;
+    }
+  }
+  &__nav {
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+      width: 50%;
+    }
+    &__item {
+      margin-bottom: 30px;
+      position: relative;
+      @media only screen and (min-width: 1025px) {
+        margin-bottom: 56px;
+      }
+      &:hover .m-menu__nav__item__text {
+        @media screen and (min-width: 1025px) {
+          position: absolute;
+          display: block;
+          left: 0;
+          top: 50%;
+          color: #f7f7f7;
+          -webkit-transform: translateY(-50%) translateX(-102px);
+          transform: translateY(-50%) translateX(-102px);
+          font-family: Larsseit Medium;
+          font-size: 200px;
+          line-height: 200px;
+        }
+      }
+      &__text {
+        display: none;
+      }
+      &__link {
+        position: relative;
+        z-index: 1;
+        font-family: "Larsseit Medium";
+        color: #3d3d3d;
+        font-size: 40px;
+        line-height: 48px;
+      }
+      &__sublink {
+        position: relative;
+        z-index: 1;
+        font-family: "Larsseit Medium";
+        font-size: 24px;
+        line-height: 29px;
+        color: #767676;
+        display: block;
+        margin-top: 8px;
+        @media screen and (min-width: 1025px) {
+          display: inline-block;
+          margin: 0 0 0 32px;
+        }
+      }
+    }
+  }
+  &__picture {
+    display: none;
+    @media only screen and (min-width: 768px) {
+      display: block;
+      position: relative;
+      width: 50%;
+      max-width: 388px;
+      margin: 0 auto;
+      & img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+        box-sizing: border-box;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.home {
+  padding: 68px 90px;
+  .title {
+    margin-bottom: 77px;
+    h1 {
+      color: #000;
+      font-family: "Roboto";
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      margin-bottom: 41px;
+      span {
+        color: #ff0101;
+      }
+    }
+    p {
+      color: #000;
+      font-family: "Roboto";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+  }
+  .content {
+    display: flex;
+    column-gap: 31px;
+    width: 1124px;
+    .graphs {
+      width: 835px;
+      height: 200px;
+      border: 1px solid black;
+    }
+    .aside {
+      width: 258px;
+      border: 1px solid black;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.wrapper {
+  height: 100vh;
+  width: 117px;
+  background-color: black;
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      row-gap: 39px;
+    }
+    .copyright {
+      color: #fff;
+      font-family: "Roboto";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      transform: rotate(-90deg);
+    }
+  }
+}

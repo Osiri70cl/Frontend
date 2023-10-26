@@ -1,0 +1,94 @@
+.m-sizes {
+  &--h1 {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 52px;
+    color: #3d3d3d;
+    @media screen and (min-width: 768px) {
+      font-size: 60px;
+      line-height: 72px;
+    }
+    &--white {
+      color: white;
+    }
+  }
+  &--h2 {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 48px;
+    color: #3d3d3d;
+    @media screen and (min-width: 768px) {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+  &--h3 {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #3d3d3d;
+    @media screen and (min-width: 768px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+  &--h4 {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #767676;
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+      line-height: 29px;
+    }
+  }
+  &--bold {
+    font-family: "Albra Medium";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3d3d3d;
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  &--p {
+    font-family: "Albra Light";
+    font-size: 17px;
+    line-height: 26px;
+    color: #3d3d3d;
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+      line-height: 28px;
+    }
+    &--white {
+      color: white;
+    }
+  }
+  &--links {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #c2466b;
+    & a {
+      color: #c2466b;
+    }
+  }
+  &--BgText {
+    font-family: "Larsseit Medium";
+    font-weight: 500;
+    font-size: 100px;
+    line-height: 140px;
+    color: #f7f7f7;
+    @media screen and (min-width: 768px) {
+      font-size: 200px;
+      line-height: 240px;
+    }
+  }
+}
