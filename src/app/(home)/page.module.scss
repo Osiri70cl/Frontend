@@ -29,8 +29,14 @@
     width: 1124px;
     .graphs {
       width: 835px;
-      height: 200px;
+      height: 800px;
       border: 1px solid black;
+      .bottomCharts {
+        display: flex;
+        align-items: center;
+        column-gap: 30px;
+        height: 291px;
+      }
     }
     .aside {
       width: 258px;
