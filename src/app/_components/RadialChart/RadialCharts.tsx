@@ -1,55 +1,47 @@
 import styles from "./RadialCharts.module.scss";
 import React from "react";
-import {
-  RadialBarChart,
-  RadialBar,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Cell, Text } from "recharts";
 
-const data = [
-  {
-    name: "unknow",
-    uv: 12,
-    pv: 4800,
-    fill: "#ffc658",
-  },
-];
-
-const style = {
-  top: "50%",
-  right: 0,
-  transform: "translate(0, -50%)",
-  lineHeight: "24px",
+type Props = {
+  rawData: any;
 };
 
-const RadialCharts = () => {
-  <div className={styles.wrapper}>
-    <ResponsiveContainer width="100%" height="100%">
-      <RadialBarChart
-        cx="50%"
-        cy="50%"
-        innerRadius="10%"
-        outerRadius="80%"
-        barSize={10}
-        data={data}
-      >
-        <RadialBar
-          minAngle={15}
-          label={{ position: "insideStart", fill: "#fff" }}
-          background
-          clockWise
-          dataKey="uv"
-        />
-        <Legend
-          iconSize={10}
-          layout="vertical"
-          verticalAlign="middle"
-          wrapperStyle={style}
-        />
-      </RadialBarChart>
-    </ResponsiveContainer>
-  </div>;
+const RadialCharts = ({ rawData }: Props) => {
+  const percent = rawData * 100;
+  const data = [{ value: percent }, { value: 100 - percent }];
+
+  return (
+    <div className={styles.wrapper}>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={200} height={200}>
+          <Pie
+            data={data}
+            cx={100}
+            cy={100}
+            startAngle={90}
+            endAngle={450}
+            innerRadius={70}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={0}
+            dataKey="value"
+          >
+            <Cell key={`cell-0`} fill="#ff0000" />
+            <Cell key={`cell-1`} fill="#FFF" />
+          </Pie>
+          <Text
+            x={100}
+            y={100}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="progress-label"
+          >
+            {`${percent.toFixed(0)}% de votre objectif`}
+          </Text>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
 };
 
 export default RadialCharts;

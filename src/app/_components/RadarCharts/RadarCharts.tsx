@@ -10,59 +10,46 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+type Props = {
+  rawData: any;
+};
 
-const RadarCharts = () => {
+const RadarCharts = ({ rawData }: Props) => {
+  console.log(rawData);
+
+  if (!rawData || rawData.length === 0) {
+    return <div>No data available</div>;
+  }
+  const transformedData = rawData.data.map((item: any) => ({
+    ...item,
+    kind: rawData.kind[item.kind],
+  }));
+
   return (
     <div className={styles.wrapper}>
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis />
+        <RadarChart
+          outerRadius={90}
+          width={730}
+          height={250}
+          data={transformedData}
+        >
+          <PolarGrid gridType="polygon" />
+          <PolarAngleAxis dataKey="kind" tick={{ fontSize: 10 }} />
+          <PolarRadiusAxis
+            angle={30}
+            domain={[0, 150]}
+            tickCount={6}
+            tick={false}
+            axisLine={false}
+            tickLine={false}
+          />
           <Radar
-            name="Mike"
-            dataKey="A"
+            name="User Metrics"
+            dataKey="value"
             stroke="#8884d8"
             fill="#8884d8"
-            fillOpacity={0.6}
+            fillOpacity={1}
           />
         </RadarChart>
       </ResponsiveContainer>
