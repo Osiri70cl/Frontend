@@ -47,8 +47,8 @@ const RadarCharts = ({ rawData }: Props) => {
           <Radar
             name="User Metrics"
             dataKey="value"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="rgba(255, 1, 1, 0.70)"
+            fill="rgba(255, 1, 1, 0.70)"
             fillOpacity={1}
           />
         </RadarChart>

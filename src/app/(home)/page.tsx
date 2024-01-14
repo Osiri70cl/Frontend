@@ -17,7 +17,6 @@ import {
 import { useRouter } from "next/router";
 
 export default function Home() {
-  // const router = useRouter();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [activityData, setActivityData] = useState<ActivityData | null>(null);
   const [averageSessionsData, setAverageSessionsData] =
@@ -26,7 +25,6 @@ export default function Home() {
     useState<PerformanceData | null>(null);
 
   useEffect(() => {
-    // Récupèrer userId depuis l'url (useParams)
     const userId = "12";
 
     const userEndpoint = `http://localhost:3000/user/${userId}`;

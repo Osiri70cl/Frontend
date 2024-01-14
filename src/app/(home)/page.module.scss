@@ -1,7 +1,7 @@
 .home {
   padding: 30px 40px;
   .title {
-    margin-bottom: 45px;
+    margin-bottom: 20px;
     h1 {
       color: #000;
       font-family: "Roboto";
@@ -25,22 +25,17 @@
   }
   .content {
     display: flex;
-    column-gap: 31px;
     width: 1124px;
     .graphs {
-      width: 835px;
-      height: 800px;
-      border: 1px solid black;
       .bottomCharts {
         display: flex;
         align-items: center;
-        column-gap: 30px;
+        column-gap: 10px;
         height: 291px;
       }
     }
     .aside {
       width: 258px;
-      border: 1px solid black;
     }
   }
 }

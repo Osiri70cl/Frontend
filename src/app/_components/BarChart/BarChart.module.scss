@@ -1,4 +1,12 @@
 .wrapper {
-  width: 100%;
+  width: 700px;
   height: 320px;
+}
+
+.recharts-tooltip-cursor {
+  fill: #282d30;
+}
+
+.recharts-bar-rectangle {
+  width: 20px;
 }

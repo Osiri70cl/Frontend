@@ -9,7 +9,8 @@
     .buttons {
       display: flex;
       flex-direction: column;
-      row-gap: 39px;
+      align-items: center;
+      row-gap: 10px;
     }
     .copyright {
       color: #fff;
