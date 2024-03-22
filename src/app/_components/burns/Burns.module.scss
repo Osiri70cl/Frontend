@@ -1,6 +1,5 @@
 .wrapper {
-  padding: 39px 24px;
-
+  padding: 39px 16px;
   display: flex;
   align-items: center;
   .logo {
@@ -10,21 +9,13 @@
   }
   .content {
     .number {
-      color: #282d30;
-      font-family: "Roboto";
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 24px;
-      margin-bottom: 2px;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
     }
     .origin {
-      color: #74798c;
-      font-family: "Roboto";
       font-size: 14px;
-      font-style: normal;
       font-weight: 500;
-      line-height: 24px;
+      color: #74798c;
     }
   }
 }

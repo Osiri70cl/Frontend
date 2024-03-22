@@ -11,6 +11,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+function formatSessions(data: any) {
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
+  return data.map((session, index) => ({
+    day: days[index],
+    sessionLength: session.sessionLength,
+  }));
+}
+
 type Props = {
   rawData: any;
 };
@@ -19,48 +27,55 @@ const LineCharts = ({ rawData }: Props) => {
   if (!rawData || rawData.length === 0) {
     return <div>No data available</div>;
   }
+  console.log(rawData);
 
-  const data = rawData.map((item: any, index: any) => ({
-    number: index + 1,
-    min: item.sessionLength,
-  }));
+  const transformedData = formatSessions(rawData);
 
+  console.log("lineChart", transformedData);
   return (
-    <div className={styles.wrapper}>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className={styles.sessions_chart_container}>
+      <h3 className={styles.title}>Durée moyenne des sessions</h3>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="sessions-chart"
+      >
         <LineChart
-          data={data}
+          width={500}
+          height={300}
+          data={transformedData}
           margin={{
-            top: 10,
-            right: 30,
-            left: 20,
-            bottom: 5,
+            top: 45,
+            right: 5,
+            bottom: 10,
+            left: 5,
           }}
         >
           <XAxis
             dataKey="day"
-            stroke="white"
-            tick={{ fill: "white", fontSize: 14 }}
+            tick={{ fontSize: 12, stroke: "white", opacity: 0.8 }}
+            dy={15}
+            stroke="1 1"
+            color="#fff"
           />
           <YAxis
-            stroke="white"
-            tick={{ fill: "white", fontSize: 14 }}
-            label={{ value: "min", position: "insideTopRight", fill: "white" }}
+            dataKey="sessionLength"
+            tick={{ fontSize: 14 }}
+            dx={-10}
+            stroke="1 1"
+            hide={true}
           />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "white",
-              borderColor: "white",
-              color: "black",
-            }}
-          />
+          {/* <Tooltip
+            content={<SessionsTooltips />}
+            cursor={<CustomizedCursor />}
+          /> */}
           <Line
             type="monotone"
-            dataKey="min"
-            stroke="white"
+            dataKey="sessionLength"
+            stroke="rgba(255, 255, 255, 0.7)"
             strokeWidth={2}
-            activeDot={{ r: 8, fill: "white", stroke: "white", strokeWidth: 2 }}
             dot={false}
+            activeDot={{ r: 2, strokeWidth: 4, stroke: "white" }}
           />
         </LineChart>
       </ResponsiveContainer>

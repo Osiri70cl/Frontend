@@ -1,0 +1,9 @@
+.layout_main {
+  display: flex;
+  height: calc(100vh - 100px);
+}
+
+.children {
+  width: 100%;
+  padding: 8px;
+}

@@ -1,12 +1,48 @@
 .wrapper {
-  width: 700px;
-  height: 320px;
+  height: 190px;
+  .recharts_tooltip_cursor {
+    fill: #282d30;
+  }
+
+  .recharts_bar_rectangle {
+    width: 20px;
+  }
 }
 
-.recharts-tooltip-cursor {
-  fill: #282d30;
+.activity_chart_description {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.recharts-bar-rectangle {
-  width: 20px;
+.activity_chart_legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.activity_chart_legend > .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #74798c;
+}
+
+.icon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.icon_black {
+  background-color: black;
+}
+
+.icon_red {
+  background-color: red;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./BarChart.module.scss";
-import React, { PureComponent } from "react";
+import React, { PureComponent, use, useCallback } from "react";
 import {
   BarChart,
   Bar,
@@ -22,56 +22,87 @@ const BarCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const data = rawData.map((item: any, index: any) => ({
-    number: index + 1,
-    Poids: item.kilogram,
-    Calories: item.calories,
-    amt: item.calories,
-  }));
+  const formatData = useCallback(
+    (data: any) => {
+      return data.map((item: any) => {
+        const dayOfMonth = new Date(item.day).getDate().toString();
+        return {
+          ...item,
+          day: dayOfMonth,
+        };
+      });
+    },
+    [rawData]
+  );
+
+  const data = formatData(rawData);
+
+  console.log("barChart", data);
 
   return (
-    <div className={styles.wrapper}>
+    <>
+      <div className={styles.activity_chart_description}>
+        <h3>Activité quotidienne</h3>
+        <div className={styles.activity_chart_legend}>
+          <div className={styles.details}>
+            <span className={`${styles.icon} ${styles.icon_black}`}></span>
+            <p>Poids (kg)</p>
+          </div>
+          <div className={styles.details}>
+            <span className={`${styles.icon} ${styles.icon_red}`}></span>
+            <p>Calories brûlées (kCal)</p>
+          </div>
+        </div>
+      </div>
       <div className={styles.wrapper}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={data}
-            margin={{
-              top: 90,
-              right: 30,
-              left: 20,
-              bottom: 10,
-            }}
-          >
-            <CartesianGrid horizontal strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="name" tick={{ fill: "black" }} />
-            <YAxis tick={{ fill: "black" }} />
-            <Tooltip />
-            <Legend
-              wrapperStyle={{
-                top: 10,
-                right: 20,
-                backgroundColor: "#f5f5f5",
-                border: "1px solid #d5d5d5",
-                borderRadius: 3,
-                lineHeight: "40px",
-              }}
+          <BarChart data={data} barGap={8} barCategoryGap={1}>
+            <CartesianGrid vertical={false} strokeDasharray="1 1" />
+            <XAxis
+              dataKey="day"
+              tickLine={false}
+              tick={{ fontSize: 14 }}
+              dy={15}
+              color="#9B9EAC"
             />
+            <YAxis
+              yAxisId="kilogram"
+              dataKey="kilogram"
+              type="number"
+              tickCount="5"
+              domain={["dataMin - 2", "dataMax + 1"]}
+              axisLine={false}
+              orientation="right"
+              tickLine={false}
+              tick={{ fontSize: 14 }}
+              dx={15}
+            />
+            <YAxis
+              yAxisId="calories"
+              dataKey="calories"
+              type="number"
+              domain={["dataMin - 10", "dataMax + 10"]}
+              hide={true}
+            />
+            {/* <Tooltip content={<Tooltips />} /> */}
             <Bar
-              dataKey="Poids"
+              yAxisId="kilogram"
+              dataKey="kilogram"
               fill="#282D30"
+              radius={[10, 10, 0, 0]}
               barSize={10}
-              radius={[50, 50, 0, 0]}
             />
             <Bar
-              dataKey="Calories"
-              fill="#E60000"
+              yAxisId="calories"
+              dataKey="calories"
+              fill="#e60000"
+              radius={[10, 10, 0, 0]}
               barSize={10}
-              radius={[50, 50, 0, 0]}
             />
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,10 @@
 import Link from "next/link";
 import React from "react";
 import SideBar from "../_components/sidebar/SideBar";
+import styles from "./layout.module.scss";
+import Header from "../_components/header/Header";
+import Drawer from "../_components/drawer/Drawer";
+import Outlet from "../_components/outlet/Outlet";
 
 export default function SiteLayout({
   children,
@@ -10,32 +14,12 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <header className="m-header">
-        <nav>
-          <ul>
-            <li className="m-header__logo">
-              <img src="/img/logo.png" alt="SportSee logo" />
-            </li>
-            <li>
-              <Link href="">Accueil</Link>
-            </li>
-            <li>
-              <Link href="">Profil</Link>
-            </li>
-            <li>
-              <Link href="">Réglages</Link>
-            </li>
-            <li>
-              <Link href="">Communauté</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main className="main">
-        <SideBar />
-        {children}
-      </main>
-    </>
+    <div>
+      <Header />
+      <div className={styles.layout_main}>
+        <Drawer />
+        <div className={styles.children}>{children}</div>
+      </div>
+    </div>
   );
 }

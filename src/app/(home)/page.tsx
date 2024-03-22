@@ -58,31 +58,37 @@ export default function Home() {
         console.error("Error fetching data:", error);
       });
   }, []);
-  console.log(userData?.todayScore);
+  console.log(userData, "test");
 
   return (
     <section className={styles.home}>
-      <div className={styles.title}>
-        <h1>
-          Bonjour <span>{userData?.userInfos.firstName}</span>
-        </h1>
-        <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-      </div>
-      <div className={styles.content}>
-        <div className={styles.graphs}>
-          <BarCharts rawData={activityData?.sessions} />
-          <div className={styles.bottomCharts}>
-            <LineCharts rawData={averageSessionsData?.sessions} />
-            <RadarCharts rawData={performanceData} />
-            <RadialCharts rawData={userData?.todayScore} />
+      <h2>
+        Bonjour <span>{userData?.userInfos.firstName}</span>
+      </h2>
+      <p>Félicitation vous avez explosé vos objectifs hier 👏</p>
+      <div className={styles.home_card_container}>
+        <div className={styles.home_activity_container}>
+          <article className={styles.activity_chart}>
+            <BarCharts rawData={activityData?.sessions} />
+          </article>
+          <div className={styles.square_charts}>
+            <article className={styles.sessions_chart}>
+              <LineCharts rawData={averageSessionsData?.sessions} />
+            </article>
+            <article className={styles.strength_chart}>
+              <RadarCharts rawData={performanceData} />
+            </article>
+            <article className={styles.goal_chart}>
+              <RadialCharts rawData={userData?.todayScore} />
+            </article>
           </div>
         </div>
-        <aside className={styles.aside}>
+        <div className={styles.home_data_container}>
           <Burns data={userData?.keyData.calorieCount} isCalorie={true} />
           <Burns data={userData?.keyData.proteinCount} isProtein={true} />
           <Burns data={userData?.keyData.carbohydrateCount} isCarbon={true} />
           <Burns data={userData?.keyData.lipidCount} isLipid={true} />
-        </aside>
+        </div>
       </div>
     </section>
   );
