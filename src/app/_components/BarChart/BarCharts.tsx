@@ -12,6 +12,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Tooltips from "../Tooltips";
 
 type Props = {
   rawData: any;
@@ -84,7 +85,7 @@ const BarCharts = ({ rawData }: Props) => {
               domain={["dataMin - 10", "dataMax + 10"]}
               hide={true}
             />
-            {/* <Tooltip content={<Tooltips />} /> */}
+            <Tooltip content={<Tooltips />} />
             <Bar
               yAxisId="kilogram"
               dataKey="kilogram"

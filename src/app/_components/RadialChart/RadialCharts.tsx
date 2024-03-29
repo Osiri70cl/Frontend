@@ -14,24 +14,21 @@ type Props = {
   rawData: any;
 };
 
+function formatGoal(rawData: any) {
+  const formatedGoal = [
+    {
+      name: "Goal",
+      value: rawData,
+    },
+    { name: "Total", value: 1 },
+  ];
+
+  return formatedGoal;
+}
+
 const RadialCharts = ({ rawData }: Props) => {
   console.log(rawData);
-  const percent = rawData;
-  const data = [{ value: percent }, { value: 100 - percent }];
-
-  // const formatGoal = (data: any) => {
-  //   const formatedGoal = [
-  //     {
-  //       name: "Goal",
-  //       value: data.score ? data.score : data.todayScore,
-  //     },
-  //     { name: "Total", value: 1 },
-  //   ];
-
-  //   return formatedGoal;
-  // };
-
-  // const transformedData = formatGoal(rawData);
+  const formatedData = formatGoal(rawData);
 
   return (
     <div className={styles.goal_chart_container}>
@@ -39,18 +36,19 @@ const RadialCharts = ({ rawData }: Props) => {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
-            data={data}
+            data={formatedData}
             dataKey="value"
             cx="50%"
             cy="50%"
             innerRadius={80}
-            outerRadius={100}
+            outerRadius={90}
+            cornerRadius={50}
             fill="red"
           >
             <Cell key={`cell-0`} fill="#FF0000" />
-            <Cell key={`cell-1`} fill="#FFF" />
+            <Cell key={`cell-1`} fill="#fbfbfb" />
             <Label
-              content={<CustomLabel value={data[0].value * 100} />}
+              content={<CustomLabel value={formatedData[0].value * 100} />}
               position="center"
             />
           </Pie>
@@ -67,7 +65,7 @@ const RadialCharts = ({ rawData }: Props) => {
             fill="#fff"
           >
             <Label
-              content={<CustomLabel value={data[0].value * 100} />}
+              content={<CustomLabel value={formatedData[0].value * 100} />}
               position="center"
             />
           </Pie>

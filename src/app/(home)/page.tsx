@@ -9,6 +9,12 @@ import RadarCharts from "../_components/RadarCharts/RadarCharts";
 import LineCharts from "../_components/LineCharts/LineCharts";
 import RadialCharts from "../_components/RadialChart/RadialCharts";
 import {
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_MAIN_DATA,
+  USER_PERFORMANCE,
+} from "@/utils/mockData";
+import {
   ActivityData,
   AverageSessionsData,
   PerformanceData,
@@ -18,6 +24,7 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [mockedData, setMockedData] = useState(true);
   const [activityData, setActivityData] = useState<ActivityData | null>(null);
   const [averageSessionsData, setAverageSessionsData] =
     useState<AverageSessionsData | null>(null);
@@ -25,40 +32,53 @@ export default function Home() {
     useState<PerformanceData | null>(null);
 
   useEffect(() => {
-    const userId = "12";
-
-    const userEndpoint = `http://localhost:3000/user/${userId}`;
-    const activityEndpoint = `http://localhost:3000/user/${userId}/activity`;
-    const averageSessionsEndpoint = `http://localhost:3000/user/${userId}/average-sessions`;
-    const performanceEndpoint = `http://localhost:3000/user/${userId}/performance`;
-
-    const fetchUserData = () => axios.get(userEndpoint);
-    const fetchActivityData = () => axios.get(activityEndpoint);
-    const fetchAverageSessionsData = () => axios.get(averageSessionsEndpoint);
-    const fetchPerformanceData = () => axios.get(performanceEndpoint);
-    Promise.all([
-      fetchUserData(),
-      fetchActivityData(),
-      fetchAverageSessionsData(),
-      fetchPerformanceData(),
-    ])
-      .then((results) => {
-        const [
-          userDataResponse,
-          activityDataResponse,
-          averageSessionsDataResponse,
-          performanceDataResponse,
-        ] = results;
-        setUserData(userDataResponse.data.data);
-        setActivityData(activityDataResponse.data.data);
-        setAverageSessionsData(averageSessionsDataResponse.data.data);
-        setPerformanceData(performanceDataResponse.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+    if (mockedData) {
+      setUserData({
+        id: USER_MAIN_DATA[0].id,
+        userInfos: USER_MAIN_DATA[0].userInfos,
+        todayScore: USER_MAIN_DATA[0].todayScore,
+        keyData: USER_MAIN_DATA[0].keyData,
       });
-  }, []);
-  console.log(userData, "test");
+
+      setActivityData(USER_ACTIVITY[0]);
+      setAverageSessionsData(USER_AVERAGE_SESSIONS[0]);
+      setPerformanceData(USER_PERFORMANCE[0]);
+    } else {
+      const userId = "12";
+
+      const userEndpoint = `http://localhost:3000/user/${userId}`;
+      const activityEndpoint = `http://localhost:3000/user/${userId}/activity`;
+      const averageSessionsEndpoint = `http://localhost:3000/user/${userId}/average-sessions`;
+      const performanceEndpoint = `http://localhost:3000/user/${userId}/performance`;
+
+      const fetchUserData = () => axios.get(userEndpoint);
+      const fetchActivityData = () => axios.get(activityEndpoint);
+      const fetchAverageSessionsData = () => axios.get(averageSessionsEndpoint);
+      const fetchPerformanceData = () => axios.get(performanceEndpoint);
+
+      Promise.all([
+        fetchUserData(),
+        fetchActivityData(),
+        fetchAverageSessionsData(),
+        fetchPerformanceData(),
+      ])
+        .then((results) => {
+          const [
+            userDataResponse,
+            activityDataResponse,
+            averageSessionsDataResponse,
+            performanceDataResponse,
+          ] = results;
+          setUserData(userDataResponse.data.data);
+          setActivityData(activityDataResponse.data.data);
+          setAverageSessionsData(averageSessionsDataResponse.data.data);
+          setPerformanceData(performanceDataResponse.data.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [mockedData]);
 
   return (
     <section className={styles.home}>

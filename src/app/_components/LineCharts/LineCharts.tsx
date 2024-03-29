@@ -9,7 +9,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Rectangle,
 } from "recharts";
+import SessionsTooltips from "../SessionsTooltip";
 
 function formatSessions(data: any) {
   const days = ["L", "M", "M", "J", "V", "S", "D"];
@@ -17,6 +19,21 @@ function formatSessions(data: any) {
     day: days[index],
     sessionLength: session.sessionLength,
   }));
+}
+
+function CustomizedCursor({ points }) {
+  return (
+    <Rectangle
+      fill="black"
+      opacity={0.1}
+      width={700}
+      height={700}
+      x={points[1].x}
+      y={-20}
+      overflow={"visible"}
+      accentHeight={"120%"}
+    />
+  );
 }
 
 type Props = {
@@ -65,10 +82,10 @@ const LineCharts = ({ rawData }: Props) => {
             stroke="1 1"
             hide={true}
           />
-          {/* <Tooltip
+          <Tooltip
             content={<SessionsTooltips />}
             cursor={<CustomizedCursor />}
-          /> */}
+          />
           <Line
             type="monotone"
             dataKey="sessionLength"
