@@ -11,7 +11,7 @@ import {
 import CustomLabel from "./CuntomLabel";
 
 type Props = {
-  rawData: any;
+  rawData: Array<Object> | null;
 };
 
 function formatGoal(rawData: any) {

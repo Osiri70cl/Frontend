@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import styles from "./Burns.module.scss";
 
 type Props = {
-  data: any;
+  data: Array<Object> | null;
   isCarbon?: boolean;
   isLipid?: boolean;
   isCalorie?: boolean;

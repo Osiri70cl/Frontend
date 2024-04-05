@@ -27,7 +27,7 @@ function translateKind(
 }
 
 type Props = {
-  rawData: any;
+  rawData: PerformanceData;
 };
 
 const RadarCharts = ({ rawData }: Props) => {

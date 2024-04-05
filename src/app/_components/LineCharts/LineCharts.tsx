@@ -15,13 +15,13 @@ import SessionsTooltips from "../SessionsTooltip";
 
 function formatSessions(data: any) {
   const days = ["L", "M", "M", "J", "V", "S", "D"];
-  return data.map((session, index) => ({
+  return data.map((session: any, index: number) => ({
     day: days[index],
     sessionLength: session.sessionLength,
   }));
 }
 
-function CustomizedCursor({ points }) {
+function CustomizedCursor({ points }: any) {
   return (
     <Rectangle
       fill="black"
@@ -37,7 +37,7 @@ function CustomizedCursor({ points }) {
 }
 
 type Props = {
-  rawData: any;
+  rawData: Array<Object> | null;
 };
 
 const LineCharts = ({ rawData }: Props) => {

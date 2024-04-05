@@ -15,7 +15,7 @@ import {
 import Tooltips from "../Tooltips";
 
 type Props = {
-  rawData: any;
+  rawData: Array<Object> | null;
 };
 
 const BarCharts = ({ rawData }: Props) => {
@@ -25,7 +25,7 @@ const BarCharts = ({ rawData }: Props) => {
 
   const formatData = useCallback(
     (data: any) => {
-      return data.map((item: any) => {
+      return data.map((item: Object) => {
         const dayOfMonth = new Date(item.day).getDate().toString();
         return {
           ...item,
