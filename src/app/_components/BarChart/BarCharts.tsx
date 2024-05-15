@@ -38,8 +38,6 @@ const BarCharts = ({ rawData }: Props) => {
 
   const data = formatData(rawData);
 
-  console.log("barChart", data);
-
   return (
     <>
       <div className={styles.activity_chart_description}>

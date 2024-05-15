@@ -24,8 +24,9 @@ import {
 
 export default function Home() {
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [mockedData, setMockedData] = useState(true);
+  const [mockedData, setMockedData] = useState(false);
   const [userID, setUserID] = useState<number | null>(12);
+  const [todayScore, setTodayScore] = useState<number | null>(0.12);
   const [activityData, setActivityData] = useState<ActivityData | null>(null);
   const [averageSessionsData, setAverageSessionsData] =
     useState<AverageSessionsData | null>(null);
@@ -80,8 +81,8 @@ export default function Home() {
 
   const handleUserChange = () => {
     setUserID(userID === 12 ? 18 : 12);
+    setTodayScore(userID === 12 ? 0.3 : 0.12);
   };
-
   return (
     <section className={styles.home}>
       <h2>
@@ -102,7 +103,7 @@ export default function Home() {
               <RadarCharts rawData={performanceData} />
             </article>
             <article className={styles.goal_chart}>
-              <RadialCharts rawData={userData?.todayScore} />
+              <RadialCharts rawData={todayScore} />
             </article>
           </div>
         </div>

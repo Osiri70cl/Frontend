@@ -44,11 +44,9 @@ const LineCharts = ({ rawData }: Props) => {
   if (!rawData || rawData.length === 0) {
     return <div>No data available</div>;
   }
-  console.log(rawData);
 
   const transformedData = formatSessions(rawData);
 
-  console.log("lineChart", transformedData);
   return (
     <div className={styles.sessions_chart_container}>
       <h3 className={styles.title}>Durée moyenne des sessions</h3>

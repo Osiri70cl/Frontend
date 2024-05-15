@@ -31,15 +31,11 @@ type Props = {
 };
 
 const RadarCharts = ({ rawData }: Props) => {
-  console.log(rawData);
-
   if (!rawData || rawData.length === 0) {
     return <div>No data available</div>;
   }
 
   const formattedData = formatPerformance(rawData);
-
-  console.log("radar", formattedData);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

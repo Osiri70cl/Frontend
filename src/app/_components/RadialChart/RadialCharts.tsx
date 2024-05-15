@@ -27,7 +27,6 @@ function formatGoal(rawData: any) {
 }
 
 const RadialCharts = ({ rawData }: Props) => {
-  console.log(rawData);
   const formatedData = formatGoal(rawData);
 
   return (
