@@ -1,5 +1,5 @@
 import styles from "./LineCharts.module.scss";
-import React, { PureComponent } from "react";
+import React, { PureComponent, useCallback } from "react";
 import {
   LineChart,
   Line,
@@ -12,14 +12,7 @@ import {
   Rectangle,
 } from "recharts";
 import SessionsTooltips from "../SessionsTooltip";
-
-function formatSessions(data: any) {
-  const days = ["L", "M", "M", "J", "V", "S", "D"];
-  return data.map((session: any, index: number) => ({
-    day: days[index],
-    sessionLength: session.sessionLength,
-  }));
-}
+import { formatSessions } from "./utils/formatLineCharts";
 
 function CustomizedCursor({ points }: any) {
   return (
@@ -45,7 +38,10 @@ const LineCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const transformedData = formatSessions(rawData);
+  const transformedData = useCallback(
+    () => formatSessions(rawData),
+    [rawData]
+  )();
 
   return (
     <div className={styles.sessions_chart_container}>

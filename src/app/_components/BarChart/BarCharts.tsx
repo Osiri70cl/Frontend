@@ -13,6 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Tooltips from "../Tooltips";
+import { formatData } from "./utils/barChartFormatter";
 
 type Props = {
   rawData: Array<Object> | null;
@@ -23,20 +24,7 @@ const BarCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const formatData = useCallback(
-    (data: any) => {
-      return data.map((item: Object) => {
-        const dayOfMonth = new Date(item.day).getDate().toString();
-        return {
-          ...item,
-          day: dayOfMonth,
-        };
-      });
-    },
-    [rawData]
-  );
-
-  const data = formatData(rawData);
+  const data = useCallback(() => formatData(rawData), [rawData])();
 
   return (
     <>

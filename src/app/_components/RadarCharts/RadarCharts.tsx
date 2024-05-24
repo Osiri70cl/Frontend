@@ -1,7 +1,7 @@
 "use client";
 import { PerformanceData } from "@/interface/interface";
 import styles from "./RadarCharts.module.scss";
-import React, { PureComponent } from "react";
+import React, { PureComponent, useCallback } from "react";
 import {
   Radar,
   RadarChart,
@@ -10,21 +10,7 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-
-function formatPerformance(input: any): any[] {
-  return input.data.map((item: any) => ({
-    subject: translateKind(item.kind, input.kind),
-    A: item.value,
-    fullMark: 280,
-  }));
-}
-
-function translateKind(
-  kind: number,
-  kindMap: { [key: string]: string }
-): string {
-  return kindMap[kind.toString()] || "Unknown";
-}
+import { formatPerformance } from "./utils/formatRadarData";
 
 type Props = {
   rawData: PerformanceData;
@@ -35,7 +21,10 @@ const RadarCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const formattedData = formatPerformance(rawData);
+  const formattedData = useCallback(
+    () => formatPerformance(rawData),
+    [rawData]
+  )();
 
   return (
     <ResponsiveContainer width="100%" height="100%">

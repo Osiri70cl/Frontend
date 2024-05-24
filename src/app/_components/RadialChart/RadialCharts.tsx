@@ -1,5 +1,5 @@
 import styles from "./RadialCharts.module.scss";
-import React from "react";
+import React, { useCallback } from "react";
 import {
   ResponsiveContainer,
   PieChart,
@@ -9,25 +9,17 @@ import {
   Label,
 } from "recharts";
 import CustomLabel from "./CuntomLabel";
+import { formatGoal } from "./utils/formatRadialData";
 
 type Props = {
   rawData: Array<Object> | null;
 };
 
-function formatGoal(rawData: any) {
-  const formatedGoal = [
-    {
-      name: "Goal",
-      value: rawData,
-    },
-    { name: "Total", value: 1 },
-  ];
-
-  return formatedGoal;
-}
-
 const RadialCharts = ({ rawData }: Props) => {
-  const formatedData = formatGoal(rawData);
+  if (!rawData || rawData.length === 0) {
+    return <div>No data available</div>;
+  }
+  const formatedData = useCallback(() => formatGoal(rawData), [rawData])();
 
   return (
     <div className={styles.goal_chart_container}>
