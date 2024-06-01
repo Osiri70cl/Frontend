@@ -10,7 +10,6 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-import { formatPerformance } from "./utils/formatRadarData";
 
 type Props = {
   rawData: PerformanceData;
@@ -21,14 +20,9 @@ const RadarCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const formattedData = useCallback(
-    () => formatPerformance(rawData),
-    [rawData]
-  )();
-
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <RadarChart cx="50%" cy="50%" outerRadius="55%" data={formattedData}>
+      <RadarChart cx="50%" cy="50%" outerRadius="55%" data={rawData}>
         <PolarGrid
           radialLines={false}
           gridType="polygon"

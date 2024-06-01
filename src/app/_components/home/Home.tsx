@@ -8,19 +8,11 @@ import LineCharts from "../LineCharts/LineCharts";
 import RadialCharts from "../RadialChart/RadialCharts";
 
 type Props = {
-  averageSessionsData: any;
-  performanceData: any;
-  todayScore: any;
-  userData: any;
-  activityData: any;
+  data: any;
 };
 
 const Home = ({
-  averageSessionsData,
-  performanceData,
-  todayScore,
-  userData,
-  activityData,
+  data: { userData, activityData, averageSessionsData, performanceData, score },
 }: Props) => {
   return (
     <section className={styles.home}>
@@ -31,17 +23,17 @@ const Home = ({
       <div className={styles.home_card_container}>
         <div className={styles.home_activity_container}>
           <article className={styles.activity_chart}>
-            <BarCharts rawData={activityData?.sessions} />
+            <BarCharts rawData={activityData} />
           </article>
           <div className={styles.square_charts}>
             <article className={styles.sessions_chart}>
-              <LineCharts rawData={averageSessionsData?.sessions} />
+              <LineCharts rawData={averageSessionsData} />
             </article>
             <article className={styles.strength_chart}>
               <RadarCharts rawData={performanceData} />
             </article>
             <article className={styles.goal_chart}>
-              <RadialCharts rawData={todayScore} />
+              <RadialCharts rawData={userData} />
             </article>
           </div>
         </div>

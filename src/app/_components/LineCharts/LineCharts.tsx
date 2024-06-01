@@ -12,7 +12,6 @@ import {
   Rectangle,
 } from "recharts";
 import SessionsTooltips from "../SessionsTooltip";
-import { formatSessions } from "./utils/formatLineCharts";
 
 function CustomizedCursor({ points }: any) {
   return (
@@ -38,11 +37,6 @@ const LineCharts = ({ rawData }: Props) => {
     return <div>No data available</div>;
   }
 
-  const transformedData = useCallback(
-    () => formatSessions(rawData),
-    [rawData]
-  )();
-
   return (
     <div className={styles.sessions_chart_container}>
       <h3 className={styles.title}>Durée moyenne des sessions</h3>
@@ -54,7 +48,7 @@ const LineCharts = ({ rawData }: Props) => {
         <LineChart
           width={500}
           height={300}
-          data={transformedData}
+          data={rawData}
           margin={{
             top: 45,
             right: 5,

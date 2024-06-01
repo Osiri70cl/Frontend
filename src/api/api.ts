@@ -5,9 +5,10 @@ import {
   USER_MAIN_DATA,
   USER_PERFORMANCE,
 } from "@/utils/mockData";
+import { formatData } from "./utils/formatData";
 
 export const fetchMockData = () => {
-  return {
+  const mockData = {
     userData: {
       id: USER_MAIN_DATA[0].id,
       userInfos: USER_MAIN_DATA[0].userInfos,
@@ -18,6 +19,8 @@ export const fetchMockData = () => {
     averageSessionsData: USER_AVERAGE_SESSIONS[0],
     performanceData: USER_PERFORMANCE[0],
   };
+
+  return formatData(mockData);
 };
 
 export const fetchDataFromAPI = async (userID: number) => {
@@ -46,12 +49,14 @@ export const fetchDataFromAPI = async (userID: number) => {
       performanceDataResponse,
     ] = results;
 
-    return {
+    const formattedResult = formatData({
       userData: userDataResponse.data.data,
       activityData: activityDataResponse.data.data,
       averageSessionsData: averageSessionsDataResponse.data.data,
       performanceData: performanceDataResponse.data.data,
-    };
+    });
+
+    return formattedResult;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

@@ -13,7 +13,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Tooltips from "../Tooltips";
-import { formatData } from "./utils/barChartFormatter";
 
 type Props = {
   rawData: Array<Object> | null;
@@ -23,8 +22,6 @@ const BarCharts = ({ rawData }: Props) => {
   if (!rawData || rawData.length === 0) {
     return <div>No data available</div>;
   }
-
-  const data = useCallback(() => formatData(rawData), [rawData])();
 
   return (
     <>
@@ -43,7 +40,7 @@ const BarCharts = ({ rawData }: Props) => {
       </div>
       <div className={styles.wrapper}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} barGap={8} barCategoryGap={1}>
+          <BarChart data={rawData} barGap={8} barCategoryGap={1}>
             <CartesianGrid vertical={false} strokeDasharray="1 1" />
             <XAxis
               dataKey="day"

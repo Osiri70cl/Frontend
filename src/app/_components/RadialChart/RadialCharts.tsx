@@ -9,7 +9,6 @@ import {
   Label,
 } from "recharts";
 import CustomLabel from "./CuntomLabel";
-import { formatGoal } from "./utils/formatRadialData";
 
 type Props = {
   rawData: Array<Object> | null;
@@ -19,7 +18,6 @@ const RadialCharts = ({ rawData }: Props) => {
   if (!rawData || rawData.length === 0) {
     return <div>No data available</div>;
   }
-  const formatedData = useCallback(() => formatGoal(rawData), [rawData])();
 
   return (
     <div className={styles.goal_chart_container}>
@@ -27,7 +25,7 @@ const RadialCharts = ({ rawData }: Props) => {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
-            data={formatedData}
+            data={rawData.score}
             dataKey="value"
             cx="50%"
             cy="50%"
@@ -39,7 +37,7 @@ const RadialCharts = ({ rawData }: Props) => {
             <Cell key={`cell-0`} fill="#FF0000" />
             <Cell key={`cell-1`} fill="#fbfbfb" />
             <Label
-              content={<CustomLabel value={formatedData[0].value * 100} />}
+              content={<CustomLabel value={rawData.score[0].value * 100} />}
               position="center"
             />
           </Pie>
@@ -56,7 +54,7 @@ const RadialCharts = ({ rawData }: Props) => {
             fill="#fff"
           >
             <Label
-              content={<CustomLabel value={formatedData[0].value * 100} />}
+              content={<CustomLabel value={rawData.score[0].value * 100} />}
               position="center"
             />
           </Pie>
